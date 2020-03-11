@@ -34,6 +34,7 @@ int meuAccept(int socket) {
     int msgRecv, len;
 
     msgRecv = recvfrom(socket, buffer, BUFSIZE, 0, (const struct addrinfo *) &addrCriteria, &len);
+    buffer[msgRecv] = '\0';
 
     if(strcmp(buffer, "SYN") == 0) {
         fputs("Conexão pedida.", stdout);
@@ -91,19 +92,19 @@ int meuSocket(){
     return servSock;
 }
 
-int aceitarConexaoUDP(int servSock){
-    struct sockaddr_storage clntAddr; 
+// int aceitarConexaoUDP(int servSock){
+//     struct sockaddr_storage clntAddr; 
 
-    socklen_t clntAddrLen = sizeof(clntAddr);
+//     socklen_t clntAddrLen = sizeof(clntAddr);
 
-    int clntSock = accept(servSock, (struct sockaddr *)&clntAddr, &clntAddrLen);
-    if (clntSock < 0){
-        perror("accept() falhou\n");
-        exit(EXIT_FAILURE);
-    }
+//     int clntSock = accept(servSock, (struct sockaddr *)&clntAddr, &clntAddrLen);
+//     if (clntSock < 0){
+//         perror("accept() falhou\n");
+//         exit(EXIT_FAILURE);
+//     }
 
-    return clntSock;
-}
+//     return clntSock;
+// }
 
 
 void trocaMensagem(int clntSocket){
@@ -157,8 +158,8 @@ int main(int argc, char const *argv[]){
             estado_atual = comunicando;
             break;
         case comunicando:
-            clntSock = aceitarConexaoUDP(servSock);
-            meuAccept(clntSock);
+            // clntSock = aceitarConexaoUDP(servSock);
+            meuAccept(servSock);
             estado_atual = finalizando;
             break;
         case finalizando:
