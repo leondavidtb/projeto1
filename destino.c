@@ -34,7 +34,6 @@ int meuAccept(int socket) {
     int msgRecv, len;
 
     msgRecv = recvfrom(socket, buffer, BUFSIZE, 0, (const struct addrinfo *) &addrCriteria, &len);
-    buffer[msgRecv] = '\0';
 
     if(strcmp(buffer, "SYN") == 0) {
         fputs("Conexão pedida.", stdout);
