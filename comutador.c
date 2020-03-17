@@ -62,8 +62,7 @@ int socketOrigem(const char *ip, const char *porta){
 
     struct addrinfo *servAddr;
     int rtnVal = getaddrinfo(ip, porta, &addrCriteria, &servAddr);
-    if (rtnVal != 0)
-    {
+    if (rtnVal != 0){
         {
             perror("getaddrinfo() falhou\n");
             exit(EXIT_FAILURE);
