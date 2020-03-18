@@ -110,23 +110,6 @@ int meuRecv(int sock, char *buffer, int BUFSIZE){
     return recvMsg;
 }
 
-void trocarMsg(int sock){
-    // int sendMsg, recvMsg;
-    // char buffer[BUFFER];
-    
-    // meuSend(sock, "TESTE", sizeof("TESTE"));
-    
-    // if(sendMsg < 0){
-    //     perror("Erro ao enviar mensagem\n");
-    // }
-    
-    // meuRecv(sock, buffer, BUFFER);
-    
-    // if(recvMsg < 0){
-    //     perror("Erro ao receber mensagem\n");
-    // }
-}
-
 int main(int argc, char const *argv[]){
 
     if (argc != 3){
@@ -149,13 +132,10 @@ int main(int argc, char const *argv[]){
             estado_atual = comunicando;
             break;
         case comunicando:
-            trocarMsg(sock);
             estado_atual = finalizando;
             break;
         case finalizando:
             estado_atual = encerrado;
-            // close(servSock);
-            // close(clntSock);
             break;
         default:
             break;
